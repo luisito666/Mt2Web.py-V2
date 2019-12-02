@@ -1,0 +1,9 @@
+compile:
+	export COMPOSE_FILE=local.yml; docker-compose build
+
+run:
+	export COMPOSE_FILE=local.yml; docker-compose up
+
+purge:
+	export COMPOSE_FILE=local.yml; docker-compose down
+
