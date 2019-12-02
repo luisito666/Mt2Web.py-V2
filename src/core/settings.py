@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Local APPS
-    'applications.authentication'
+    'applications.authentication',
+    'applications.player'
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,8 @@ DATABASES = {
 
 
 DATABASE_ROUTERS = {
-    'applications.authentication.router.AuthenticationRouter'
+    'applications.authentication.router.AuthenticationRouter',
+    'applications.player.router.PlayerRouter'
 }
 
 # Password validation

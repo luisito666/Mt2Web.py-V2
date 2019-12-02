@@ -1,3 +1,7 @@
+"""
+    Models
+"""
+
 import jwt
 
 from django.db import models
