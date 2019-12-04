@@ -9,6 +9,6 @@ services:
     volumes:
       - ./src:/app
     env_file:
-       - ./.environments/dev/django/.django
+       - ./.environments/prod/django/.django
     ports:
       - 8000:8000

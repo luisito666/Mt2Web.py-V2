@@ -1,4 +1,4 @@
-compile:
+build:
 	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose build
 
 run:
@@ -6,4 +6,13 @@ run:
 
 purge:
 	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose down
+
+# Production commands
+
+build-prod:
+	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose build
+
+run-prod:
+	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose up
+
 
