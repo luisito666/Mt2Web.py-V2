@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import pytz
-from datetime import datetime
+from datetime import datetime, timedelta
 from yaml import load, Loader
 
 
@@ -31,7 +31,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nr0#kv#85$m!*s6t$1s@1#z%2en-*3n5i853^$vy=4p!nddkfn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = CONFIG['development']['env']
+DEBUG = int(os.environ['DEBUG'])
 
 ALLOWED_HOSTS = ['localhost', CONFIG['server']['domain'], 'www.' + CONFIG['server']['domain'] ]
 
@@ -162,6 +162,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Mt2Web.py Config
 
 # Configurations ingame
 # Buff duration
@@ -177,3 +178,28 @@ if CONFIG['register']['mail_activate_account']:
 else:
     ACTIVATE = datetime(2009, 1, 1, 0, 0, 0, 00000, tzinfo=pytz.UTC)
 
+# Auth User Model for APP
+CUSTOM_AUTH_USER_MODEL = 'authentication.Account'
+
+CUSTOM_AUTHENTICATION_BACKENDS = ['applications.authentication.backends.ModelBackend']
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'applications.api.authentication.JWTAuthentication',
+    )
+}
+
+
+# Config of JWT Token
+ALGORITHM = 'HS256' 
+SIGNING_KEY = SECRET_KEY
+VERIFYING_KEY = None
+AUDIENCE = None
+ISSUER = None
+TOKEN_TYPE_CLAIM = 'token_type'
+USER_ID_FIELD = 'id'
+USER_ID_CLAIM = 'user_id'
+ACCESS_TOKEN_LIFETIME = timedelta(minutes=15)
+AUTH_HEADER_TYPES = ('Bearer',)
+AUTH_TOKEN_CLASSES = ('applications.api.tokens.AccessToken',)

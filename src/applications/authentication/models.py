@@ -72,34 +72,13 @@ class AbstractAccount(AbstractBaseAccount):
     def __str__(self):
         return self.login
 
-    def generate_auth_token(self):
-        """
-        :param user:
-        :return: Token JWT
-        """
-        payload = {
-            "sub": str(self.id),
-            "iat": datetime.utcnow(),
-            "exp": datetime.utcnow() + timedelta(days=1),
-        }
-        token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
-        return token
-    
-    @classmethod
-    def verify_auth_token(cls, token):
-        try:
-            validate_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-            user = cls.objects.get(id=validate_token['user_id'])
-            return user
-        except jwt.PyJWTError:
-            raise
-        except cls.DoesNotExist:
-            raise
-        return None
-
 
 class Account(AbstractAccount):
     """
         You can add more options to account
     """
-    pass
+    @property
+    def is_active(self):
+        if self.status == 'OK':
+            return True
+        return False

@@ -1,3 +1,4 @@
+# Basic commands
 build:
 	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose build
 
@@ -15,4 +16,9 @@ build-prod:
 run-prod:
 	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose up
 
+# Dev commands
+shell:
+	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose run --rm django python manage.py shell
 
+enter:
+	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose run --rm django sh

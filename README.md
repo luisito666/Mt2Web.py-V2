@@ -19,6 +19,7 @@ La principal motivación que da surgimiento a este proyecto, es tener una web de
 1. git
 2. docker
 3. docker compose
+4. make
 
 ## ¿Como instalar?
 
@@ -68,4 +69,12 @@ make run
 ```
 
 Nota: El comando anterior ejecutar el proyecto en modo desarrollador.
+
+### Iniciar modo produccion.
+
+```
+make run-prod
+```
+
+Nota: Es recomendado usar este comando cuando vamos a montar la pagina para su uso.
 
