@@ -39,3 +39,11 @@ class TokenObtainView(TokenViewBase):
     """
     serializer_class = serializers.TokenObtainPairSerializer
 
+
+class TestPermision(APIView):
+
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        user = request.user
+        return Response({'username': user.login})

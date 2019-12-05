@@ -8,5 +8,6 @@ from django.urls import path
 from .views import TokenObtainView, TestPermision
 
 urlpatterns = [
-    path('token/', TokenObtainView.as_view(), name='login')
+    path('token/', TokenObtainView.as_view(), name='login'),
+    path('test/', TestPermision.as_view(), name='test')
 ]
