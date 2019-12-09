@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { map } from 'rxjs/operators';
 // Servicio
 import { HttpService } from './http/http.service';
 
@@ -17,8 +17,15 @@ export class LoginService {
         private http: HttpService
     ) {}
 
-    public login(user_data: User) {
-        return this.http.login(user_data);
+    public login(UserData: User) {
+        return this.http.login(UserData)
+            .pipe(
+                map((res: any) => {
+                    return {
+                        token: res.refresh
+                    };
+                })
+            );
     }
 
     public logout() {

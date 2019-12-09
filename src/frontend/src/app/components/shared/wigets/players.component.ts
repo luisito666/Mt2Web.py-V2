@@ -80,15 +80,15 @@ import { HttpService } from '../../../services/http/http.service';
 export class PlayersComponent implements OnInit {
 
   constructor(
-    private http: HttpService
-  ) { 
-      this.load_players()
+    public http: HttpService
+  ) {
+      this.load_players();
   }
 
   ngOnInit() {}
 
   load_players() {
-    this.http.get_players().catch()
+    this.http.get_players().catch();
   }
 
 }

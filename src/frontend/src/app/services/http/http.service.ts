@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AccountSend } from '../../interfaces/account';
 import { User } from '../../interfaces/user.simple';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable()
@@ -10,7 +11,7 @@ export class HttpService {
   guilds: any;
   players: any;
 
-  baseUrl = 'http://localhost:8000';
+  baseUrl = environment.baseUrl;
 
   constructor(
     private http: HttpClient
@@ -35,12 +36,12 @@ export class HttpService {
   }
 
   async get_guilds() {
-    const url = `${this.baseUrl}/api/v1/guilds_ranking/`;
+    const url = `${this.baseUrl}/api/guild_rank/`;
     this.guilds = await this.get(url).toPromise();
   }
 
   async get_players() {
-    const url = `${this.baseUrl}/api/v1/players_ranking/`;
+    const url = `${this.baseUrl}/api/player_rank/`;
     this.players = await this.get(url).toPromise();
   }
 
@@ -54,9 +55,9 @@ export class HttpService {
     return this.get(url);
   }
 
-  login(login_data: User) {
-    const url = `${this.baseUrl}/api/v1/token/`;
-    const body = JSON.stringify(login_data);
+  login(LoginData: User) {
+    const url = `${this.baseUrl}/api/token/`;
+    const body = JSON.stringify(LoginData);
     return this.http.post(url, body, this.get_headers());
   }
 

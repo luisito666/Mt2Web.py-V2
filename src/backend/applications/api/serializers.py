@@ -75,3 +75,16 @@ class TokenObtainPairSerializer(TokenObtainSerializer):
 
         return data
 
+
+class RankingPlayerSerializer(serializers.Serializer):
+	account_id = serializers.IntegerField()
+	name = serializers.CharField()	
+	level = serializers.IntegerField()
+	exp = serializers.IntegerField()	
+
+
+class RankingGuildSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    level = serializers.IntegerField()
+    exp = serializers.IntegerField()
+    ladder_point = serializers.IntegerField()

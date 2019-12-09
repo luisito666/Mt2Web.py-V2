@@ -36,7 +36,7 @@ html,body {
         z-index: 1; 
         width: 100%;
         height: 14%;
-        background: url(/assets/img/SM_/Metin2_Bar.png) no-repeat;
+        background: url(/static/angular/assets/img/SM_/Metin2_Bar.png) no-repeat;
         background-size: cover;
         display: flex;
         flex-direction: row;
@@ -44,7 +44,7 @@ html,body {
     }
 
     .bar .bar_logo {
-        background: url(/assets/img/SM_/Metin2_logo2.png) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/Metin2_logo2.png) no-repeat center;
         height: 33%;
         width: 27%;
         margin: 5%;
@@ -128,7 +128,7 @@ html,body {
 
     /* Clases para manejar el capitulo 1 */
     .logo {
-        background: url(/assets/img/SM_/Metin2_logo.png) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/Metin2_logo.png) no-repeat center;
         height: 12%;
         width: 60%;
         margin: 5%;
@@ -151,20 +151,20 @@ html,body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: url(/assets/img/SM_/SM_Metin2_background_0.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_0.jpg) no-repeat center;
         background-size: cover;
     }
     .cap2 {
-        background: url(/assets/img/SM_/SM_Metin2_background_1.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_1.jpg) no-repeat center;
         background-size: cover;
     }
     
     .cap3 {
-        background: url(/assets/img/SM_/SM_Metin2_background_2.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_2.jpg) no-repeat center;
         background-size: cover;
     }
     .cap4 {
-        background: url(/assets/img/SM_/SM_Metin2_background_3.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_3.jpg) no-repeat center;
         background-size: cover;
     }
     .cap6 {
@@ -172,15 +172,15 @@ html,body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: url(/assets/img/SM_/SM_Metin2_background_4.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_4.jpg) no-repeat center;
         background-size: cover;
     }
     .cap7 {
-        background: url(/assets/img/SM_/SM_Metin2_background_5.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_5.jpg) no-repeat center;
         background-size: cover;
     }
     .cap8 {
-        background: url(/assets/img/SM_/SM_Metin2_background_6.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/SM_/SM_Metin2_background_6.jpg) no-repeat center;
         background-size: cover;
     }
 
@@ -483,7 +483,7 @@ html,body {
         z-index: 2; 
         width: 100%;
         height: 19%;
-        background: url(/assets/img/L_/L_Metin2_Bar.png) no-repeat;
+        background: url(/static/angular/assets/img/L_/L_Metin2_Bar.png) no-repeat;
         background-size: cover;
     }
 
@@ -507,7 +507,7 @@ html,body {
             .barcontent .bar_logo {
                 width: 80%;
                 height: 100%;
-                background: url(/assets/img/L_/L_Metin2_logo2.png) no-repeat center;
+                background: url(/static/angular/assets/img/L_/L_Metin2_logo2.png) no-repeat center;
                 border: none;
             }
 
@@ -778,7 +778,7 @@ html,body {
 
     /* Clases para manejar el capitulo 1 */
     .logo {
-        background: url(/assets/img/L_/L_Metin2_logo.png) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_logo.png) no-repeat center;
         height: 20%;
         width: 60%;
         margin: 5%;
@@ -801,20 +801,20 @@ html,body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: url(/assets/img/L_/L_Metin2_background_0.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_0.jpg) no-repeat center;
         background-size: cover;
     }
     .cap2 {
-        background: url(/assets/img/L_/L_Metin2_background_1.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_1.jpg) no-repeat center;
         background-size: cover;
     }
     
     .cap3 {
-        background: url(/assets/img/L_/L_Metin2_background_2.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_2.jpg) no-repeat center;
         background-size: cover;
     }
     .cap4 {
-        background: url(/assets/img/L_/L_Metin2_background_3.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_3.jpg) no-repeat center;
         background-size: cover;
     }
     .cap5 {
@@ -825,15 +825,15 @@ html,body {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: url(/assets/img/L_/L_Metin2_background_4.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_4.jpg) no-repeat center;
         background-size: cover;
     }
     .cap7 {
-        background: url(/assets/img/L_/L_Metin2_background_5.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_5.jpg) no-repeat center;
         background-size: cover;
     }
     .cap8 {
-        background: url(/assets/img/L_/L_Metin2_background_6.jpg) no-repeat center;
+        background: url(/static/angular/assets/img/L_/L_Metin2_background_6.jpg) no-repeat center;
         background-size: cover;
     }
 

@@ -1,10 +1,13 @@
+from django.db.models import Q
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from applications.player.models import Player, Guild
 from . import serializers
 from .authentication import AUTH_HEADER_TYPES
 from .exceptions import InvalidToken, TokenError
+from .pagination import RankinPageNumber
 
 
 class TokenViewBase(generics.GenericAPIView):
@@ -47,3 +50,15 @@ class TestPermision(APIView):
     def get(self, request):
         user = request.user
         return Response({'username': user.login})
+
+
+class RankingGuilds(generics.ListAPIView):
+	queryset = Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
+	serializer_class = serializers.RankingGuildSerializer
+	pagination_class = RankinPageNumber
+
+
+class RankingPlayers(generics.ListAPIView):
+	queryset = Player.objects.all().exclude(Q(name__contains='[')).order_by('-level','-exp')
+	serializer_class = serializers.RankingPlayerSerializer
+	pagination_class = RankinPageNumber

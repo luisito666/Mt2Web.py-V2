@@ -82,7 +82,7 @@ export class GuildsComponent implements OnInit {
     guilds: any = [];
 
   constructor(
-      private http: HttpService
+      public http: HttpService
   ) {
       this.load_guilds();
   }
