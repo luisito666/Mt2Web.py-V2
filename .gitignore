@@ -135,6 +135,8 @@ dmypy.json
 .pyre/
 
 # Angular Stuff
+src/backend/static/angular/
+
 .DS_STORE
 
 /dist/
