@@ -1,0 +1,40 @@
+<section #manager id="manager_user" class="manager_user">
+    <div class="menu">
+        <section class="tabs_menu">
+            <button class="tabs pointer" 
+                    (click)="showMenu($event, '1')" 
+                    id="default"
+                    style="border-top-left-radius: 10px;">
+                Personajes
+            </button>
+            <button class="tabs pointer" 
+                    (click)="showMenu($event, '2')">
+                Cambio de Contraseña
+            </button>
+            <button class="tabs pointer" 
+                    (click)="showMenu($event, '3')">
+                Donar
+            </button>
+            <button class="tabs pointer"
+                    (click)="logout()">
+                Cerrar Session
+            </button>
+        </section>
+        <section class="content_menu">
+            <div id="1" class="content">
+                <app-user-manager-players></app-user-manager-players>
+            </div>
+            <div id="2" class="content">
+                <app-user-manager-passwd></app-user-manager-passwd>
+            </div>
+            <div id="3" class="content">
+                <app-user-manager-donations></app-user-manager-donations>
+            </div>
+        </section>
+    </div>
+</section>
+
+<app-statics></app-statics>
+<app-sidebar></app-sidebar>
+<app-players></app-players>
+<app-guilds></app-guilds>

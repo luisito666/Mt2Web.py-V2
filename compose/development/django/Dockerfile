@@ -7,7 +7,7 @@ RUN apk update \
     && mkdir -p /home/data/www \
     && mkdir -p /app
 
-COPY ./src/requirements.txt /app
+COPY ./src/backend/requirements.txt /app
 
 RUN set -ex \
     && apk add zlib-dev jpeg-dev mariadb-dev \
