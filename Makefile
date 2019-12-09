@@ -3,7 +3,8 @@ build:
 	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose build
 
 run:
-	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose up
+	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose up -d
+	cd src/frontend/; sh run.sh
 
 purge:
 	export COMPOSE_FILE=docker-compose-dev.yml; docker-compose down
