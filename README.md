@@ -25,7 +25,7 @@ La principal motivación que da surgimiento a este proyecto, es tener una web de
 
 ```
 git clone git@github.com:luisito666/Mt2Web.py-V2.git
-cd Mt2Web.py/
+cd Mt2Web.py-V2/
 make build
 ```
 
