@@ -8,8 +8,6 @@ import { SignupService } from 'src/app/services/signup.service';
 // RXJS
 import { Observable } from 'rxjs';
 
-// Swal
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
