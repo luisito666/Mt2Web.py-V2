@@ -14,7 +14,7 @@ from yaml import load, Loader
     Get Env's and export
 """
 
-envs_path = '/app/config.yml'
+envs_path = '/app/backend/config.yml'
 CONFIG = load(open(envs_path).read(), Loader=Loader)
 
 

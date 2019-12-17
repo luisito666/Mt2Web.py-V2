@@ -17,7 +17,7 @@ from yaml import load, Loader
 
 
 # Cargando la configuracion del proyecto
-CONFIG = load(open('/app/config.yml').read(), Loader=Loader)
+CONFIG = load(open('/app/backend/config.yml').read(), Loader=Loader)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -161,6 +161,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = '/home/data/www/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")

@@ -76,6 +76,19 @@ class TokenObtainPairSerializer(TokenObtainSerializer):
         return data
 
 
+class RegisterSerializer(serializers.ModelSerializer):
+
+    def create(self, validated_data):
+        user = User.objects.create_account(**validated_data)
+        user.save()
+        return user
+
+    class Meta:
+        model = User
+        fields = ('login', 'password', 'email', 'real_name', 'social_id')        
+        extra_kwargs = {'password': {'write_only': True}}
+
+
 class RankingPlayerSerializer(serializers.Serializer):
 	account_id = serializers.IntegerField()
 	name = serializers.CharField()	

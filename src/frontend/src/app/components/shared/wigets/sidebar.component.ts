@@ -20,4 +20,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  scroll( ) {
+    const el = document.getElementById('navbar');
+    el.scrollTop = el.scrollHeight;
+  }
+
 }

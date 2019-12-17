@@ -8,8 +8,19 @@ services:
       dockerfile: ./compose/development/django/Dockerfile
     image: mt2web-py
     volumes:
-      - ./src/backend/:/app
+      - ./src/:/app
+      - ./src/frontend/dist/:/app/static/angular
     env_file:
        - ./.environments/dev/django/.django
     ports:
       - 8000:8000
+  
+
+  frontend_build:
+    build: 
+      context: .
+      dockerfile: ./compose/development/frontend/Dockerfile
+    image: mt2web-frontend
+    user: ${CURRENT_UID}
+    volumes:
+      - ./src/frontend/:/app
