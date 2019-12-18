@@ -3,6 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 // import services
 import { HttpService } from './http/http.service';
+import { AuthenticateService } from './http/authenticate.service';
+
 
 @NgModule({
     declarations: [],
@@ -18,12 +20,14 @@ export class ServicesModule {
         return {
             ngModule: ServicesModule,
             providers: [
-                HttpService
+                HttpService,
+                AuthenticateService
             ]
         };
     }
 }
 
 export {
-    HttpService
+    HttpService,
+    AuthenticateService
 };

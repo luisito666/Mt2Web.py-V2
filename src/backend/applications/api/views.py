@@ -88,3 +88,12 @@ class RegisterGeneric(generics.CreateAPIView):
     queryset = Account.objects.all()
     serializer_class = serializers.RegisterSerializer
     permission_classes = (AllowAny,)
+
+
+class CurrentUserView(APIView):
+    serializer_class = serializers.CurrentUserSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        serializer = self.serializer_class(request.user)
+        return Response(serializer.data)

@@ -89,6 +89,14 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
 
+class CurrentUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('login', 'status', 'real_name', 'social_id', 
+        'email', 'coins', 'create_time')
+
+
 class RankingPlayerSerializer(serializers.Serializer):
 	account_id = serializers.IntegerField()
 	name = serializers.CharField()	

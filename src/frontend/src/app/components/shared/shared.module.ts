@@ -11,6 +11,7 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
 import { UserManagerPlayersComponent } from './user-manager/user-manager-players.component';
 import { UserManagerPasswdComponent } from './user-manager/user-manager-passwd.component';
 import { UserManagerDonationsComponent } from './user-manager/user-manager-donations.component';
+import { MainManagerComponent } from './user-manager/main-manager.components';
 import { PlayersComponent } from './wigets/players.component';
 import { GuildsComponent } from './wigets/guilds.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +31,7 @@ import { SidebarComponent } from './wigets/sidebar.component';
         LoginComponent,
         StaticsComponent,
         SidebarComponent,
+        MainManagerComponent
     ],
     imports: [
         CommonModule,
