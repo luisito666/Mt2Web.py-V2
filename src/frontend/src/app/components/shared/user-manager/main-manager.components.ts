@@ -18,7 +18,9 @@ export class MainManagerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const session = this.haveSession()
+    this.authenticate.get_current_user()
+            .subscribe( res => console.log(res));
+    /* const session = this.haveSession()
       .subscribe( (response: any) => {
         console.log(response);
         if (response.authenticated) {
@@ -26,7 +28,7 @@ export class MainManagerComponent implements OnInit {
             .subscribe( res => console.log(res));
           session.unsubscribe();
         }
-      });
+      }); */
   }
 
   haveSession(): Observable <any> {

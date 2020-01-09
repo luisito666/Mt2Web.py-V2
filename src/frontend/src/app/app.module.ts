@@ -1,9 +1,12 @@
+import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ServicesModule } from './services/services.module';
+
+// JWT Module
 import { JwtModule } from '@auth0/angular-jwt';
+
 // APP Component
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -11,9 +14,10 @@ import { MainComponent } from './main/main.component';
 // Modules
 import { PagesModule } from './components/pages/pages.module';
 import { SharedModule } from './components/shared/shared.module';
+import { ServicesModule } from './services/services.module';
 
 // Router
-import { APP_ROUTES } from './app.routes';
+import { AppRoutingModule } from './app.routing.module';
 
 
 @NgModule({
@@ -28,7 +32,7 @@ import { APP_ROUTES } from './app.routes';
     HttpClientModule,
     ServicesModule.forRoot(),
     JwtModule,
-    APP_ROUTES,
+    AppRoutingModule,
     RouterModule
   ],
   providers: [],

@@ -42,7 +42,9 @@ import { SidebarComponent } from './wigets/sidebar.component';
     exports: [
         NavbarComponent,
         UserManagerComponent,
-        LoginComponent
+        LoginComponent,
+        ReactiveFormsModule,
+        FormsModule
     ],
     providers: [],
 })
