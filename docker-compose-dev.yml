@@ -21,6 +21,6 @@ services:
       context: .
       dockerfile: ./compose/development/frontend/Dockerfile
     image: mt2web-frontend
-    user: ${CURRENT_UID}
+    # user: ${CURRENT_UID}
     volumes:
       - ./src/frontend/:/app

@@ -20,6 +20,7 @@ La principal motivación que da surgimiento a este proyecto, es tener una web de
 2. docker
 3. docker compose
 4. make
+5. Sistema operativo Linux (Ubuntu, Centos etc..), Mac OS
 
 ## ¿Como instalar?
 
