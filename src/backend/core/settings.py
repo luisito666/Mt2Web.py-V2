@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party Apps
+    'corsheaders',
     # Local APPS
     'applications.authentication',
     'applications.player'
@@ -58,6 +60,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Django Cors
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -166,6 +171,12 @@ STATIC_ROOT = '/home/data/www/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
+]
+
+# Django Cors 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:4200",
+    "http://127.0.0.1:9000"
 ]
 
 # Mt2Web.py Config

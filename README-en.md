@@ -2,7 +2,7 @@
 
 # Mt2Web.py-V2
 
-Nueva generacion de web's para servidores de metin2
+New generatios of Web's for Metin2 PServer
 
 ## Motivación.
 
