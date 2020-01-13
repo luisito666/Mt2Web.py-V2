@@ -5,10 +5,9 @@ services:
   - docker
 
 env:
-    COMPOSE_VERSION: 1.20.1
-
-global:
-  - COMPOSE_FILES="-f docker-compose-web.yml"
+  global:
+    - COMPOSE_FILES="-f docker-compose-web.yml"
+    - COMPOSE_VERSION=1.20.1
 
 before_install:
   - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
