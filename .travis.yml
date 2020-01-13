@@ -1,13 +1,13 @@
 language: bash
 
-
 sudo: required
 services:
   - docker
 
 env:
-  COMPOSE_VERSION: 1.20.1
-  COMPOSE_FILE=docker-compose-web.yml
+global:
+  - COMPOSE_VERSION=1.20.1
+  - COMPOSE_FILE=docker-compose-web.yml
 
 before_install:
   - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
