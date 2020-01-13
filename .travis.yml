@@ -5,8 +5,9 @@ services:
   - docker
 
 env:
+    COMPOSE_VERSION: 1.20.1
+
 global:
-  - COMPOSE_VERSION=1.20.1
   - COMPOSE_FILE=docker-compose-web.yml
 
 before_install:
