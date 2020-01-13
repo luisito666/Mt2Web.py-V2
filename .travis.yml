@@ -8,6 +8,7 @@ env:
   global:
     - COMPOSE_FILES="-f docker-compose-web.yml"
     - COMPOSE_VERSION=1.20.1
+    - COMPOSE_FILE="docker-compose-web.yml"
 
 before_install:
   - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -15,4 +16,4 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker-compose ${COMPOSE_FILES} build --no-cache
+  - docker-compose build 
