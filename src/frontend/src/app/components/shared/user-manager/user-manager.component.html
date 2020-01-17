@@ -5,14 +5,20 @@
                     (click)="showMenu($event, '1')" 
                     id="default"
                     style="border-top-left-radius: 10px;">
+                Informacion
+            </button>
+            <button class="tabs pointer" 
+                    (click)="showMenu($event, '2')" 
+                    id="default"
+                    style="border-top-left-radius: 10px;">
                 Personajes
             </button>
             <button class="tabs pointer" 
-                    (click)="showMenu($event, '2')">
+                    (click)="showMenu($event, '3')">
                 Cambio de Contraseña
             </button>
             <button class="tabs pointer" 
-                    (click)="showMenu($event, '3')">
+                    (click)="showMenu($event, '4')">
                 Donar
             </button>
             <button class="tabs pointer"
@@ -22,12 +28,15 @@
         </section>
         <section class="content_menu">
             <div id="1" class="content">
-                <app-user-manager-players></app-user-manager-players>
+                <app-main-manager></app-main-manager>
             </div>
             <div id="2" class="content">
-                <app-user-manager-passwd></app-user-manager-passwd>
+                <app-user-manager-players></app-user-manager-players>
             </div>
             <div id="3" class="content">
+                <app-user-manager-passwd></app-user-manager-passwd>
+            </div>
+            <div id="4" class="content">
                 <app-user-manager-donations></app-user-manager-donations>
             </div>
         </section>

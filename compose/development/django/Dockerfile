@@ -21,7 +21,7 @@ RUN chmod +x /start
 COPY ./compose/development/django/entrypoint /
 RUN chmod +x /entrypoint
 
-WORKDIR /app
+WORKDIR /app/backend
 
 ENTRYPOINT [ "/entrypoint" ] 
 

@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/luisito666/Mt2Web.py-V2.svg?branch=develop)](https://travis-ci.org/luisito666/Mt2Web.py-V2)
+
+*[Español](README.md) ∙ [English](README-en.md) 
+
 # Mt2Web.py-V2
 
 Nueva generacion de web's para servidores de metin2
@@ -20,6 +24,7 @@ La principal motivación que da surgimiento a este proyecto, es tener una web de
 2. docker
 3. docker compose
 4. make
+5. Sistema operativo Linux (Ubuntu, Centos etc..), Mac OS
 
 ## ¿Como instalar?
 

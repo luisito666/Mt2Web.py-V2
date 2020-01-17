@@ -17,7 +17,7 @@ from yaml import load, Loader
 
 
 # Cargando la configuracion del proyecto
-CONFIG = load(open('/app/config.yml').read(), Loader=Loader)
+CONFIG = load(open('/app/backend/config.yml').read(), Loader=Loader)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party Apps
+    'corsheaders',
     # Local APPS
     'applications.authentication',
     'applications.player'
@@ -58,6 +60,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Django Cors
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -162,8 +167,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/home/data/www/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
+]
+
+# Django Cors 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:4200",
+    "http://127.0.0.1:9000"
 ]
 
 # Mt2Web.py Config

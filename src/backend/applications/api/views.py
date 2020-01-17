@@ -1,9 +1,11 @@
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from applications.player.models import Player, Guild
+from applications.authentication.models import Account
 from . import serializers
 from .authentication import AUTH_HEADER_TYPES
 from .exceptions import InvalidToken, TokenError
@@ -35,6 +37,19 @@ class TokenViewBase(generics.GenericAPIView):
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
+class BaseInfo(generics.GenericAPIView):
+    permission_classes = ()
+    authentication_classes = ()
+    model_class = None
+
+    def get(self, request, *args, **kwargs):
+        try:
+            self.model_class.objects.get(login=kwargs.get('username'))
+            return Response({'status': True})
+        except self.model_class.DoesNotExist:           
+            return Response({'status': False}, status=status.HTTP_404_NOT_FOUND)
+
+
 class TokenObtainView(TokenViewBase):
     """
     Takes a set of user credentials and returns an access and refresh JSON web
@@ -62,3 +77,23 @@ class RankingPlayers(generics.ListAPIView):
 	queryset = Player.objects.all().exclude(Q(name__contains='[')).order_by('-level','-exp')
 	serializer_class = serializers.RankingPlayerSerializer
 	pagination_class = RankinPageNumber
+
+
+class Info(BaseInfo):
+    permission_classes = (AllowAny,)
+    model_class = Account
+
+
+class RegisterGeneric(generics.CreateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = serializers.RegisterSerializer
+    permission_classes = (AllowAny,)
+
+
+class CurrentUserView(APIView):
+    serializer_class = serializers.CurrentUserSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        serializer = self.serializer_class(request.user)
+        return Response(serializer.data)

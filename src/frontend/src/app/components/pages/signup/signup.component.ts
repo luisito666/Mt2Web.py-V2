@@ -8,8 +8,6 @@ import { SignupService } from 'src/app/services/signup.service';
 // RXJS
 import { Observable } from 'rxjs';
 
-// Swal
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +21,7 @@ import Swal from 'sweetalert2';
 export class SignupComponent implements OnInit {
 
   sigupForm: FormGroup;
-  username: string;
+  username: boolean;
 
   checkbox: boolean;
 
@@ -41,31 +39,31 @@ export class SignupComponent implements OnInit {
     public service: SignupService
   ) {
     this.sigupForm = new FormGroup({
-      'login': new FormControl('', [
+      login: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
       ], [ this.verifyUser.bind(this) ]),
-      'password': new FormControl('', [
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
       ]),
-      'password_again': new FormControl('', [
+      password_again: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
       ]),
-      'real_name': new FormControl('', [
+      real_name: new FormControl('', [
         Validators.required,
         Validators.minLength(4)
       ]),
-      'email': new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
       ]),
-      'social_id': new FormControl('', [
+      social_id: new FormControl('', [
         Validators.required,
         Validators.pattern('.{7,7}')
       ]),
-      'checkbox': new FormControl('', [
+      checkbox: new FormControl('', [
         Validators.required
       ])
     });
@@ -90,7 +88,7 @@ export class SignupComponent implements OnInit {
       (resolve, reject) => {
         this.servicio(usuario);
         setTimeout( () => {
-          if (this.username === usuario) {
+          if (this.username) {
             resolve({existe: true});
           } else {
             resolve( null );
@@ -103,14 +101,17 @@ export class SignupComponent implements OnInit {
 
   public servicio(usuario: string) {
     this.service.check_user( usuario ).subscribe(
-      (user: any) => {
-        if (user.data.login) {
-          this.username =  user.data.login;
+      (response: any) => {
+        console.log(response);
+        if (response.status) {
+          this.username = true;
+        } else {
+          this.username = false;
         }
       },
       // Manejando el error
       () => {
-      this.username = '';
+      this.username = false;
     });
   }
 

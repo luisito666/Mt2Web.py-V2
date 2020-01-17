@@ -5,10 +5,13 @@
 # imporacion por defecto
 from django.urls import path
 
-from .views import TokenObtainView, TestPermision, RankingGuilds, RankingPlayers
+from . import views
 
 urlpatterns = [
-    path('token/', TokenObtainView.as_view(), name='login'),
-    path('guild_rank/', RankingGuilds.as_view(), name='guild_rank'),
-    path('player_rank/', RankingPlayers.as_view(), name='player_rank')
+    path('token/', views.TokenObtainView.as_view(), name='login'),
+    path('signup/', views.RegisterGeneric.as_view(), name='signup'),
+    path('guild_rank/', views.RankingGuilds.as_view(), name='guild_rank'),
+    path('player_rank/', views.RankingPlayers.as_view(), name='player_rank'),
+    path('current_user/', views.CurrentUserView.as_view(), name='current_user'),
+    path('info/<str:username>', views.Info.as_view(), name='info')
 ]

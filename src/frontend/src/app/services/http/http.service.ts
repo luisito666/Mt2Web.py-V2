@@ -46,12 +46,12 @@ export class HttpService {
   }
 
   create_user(userForm: AccountSend) {
-    const url = `${this.baseUrl}/api/v1/signup/`;
+    const url = `${this.baseUrl}/api/signup/`;
     return this.post(url, userForm);
   }
 
   verify_user(username: string) {
-    const url = `${this.baseUrl}/api/v1/info/${username}`;
+    const url = `${this.baseUrl}/api/info/${username}`;
     return this.get(url);
   }
 
