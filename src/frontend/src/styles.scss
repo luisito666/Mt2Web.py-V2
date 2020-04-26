@@ -345,7 +345,6 @@ html,body {
 
     /* Modal Inicio de Sesión */
     .modal_sign_in {
-        display: none;
         position: fixed;
         z-index: 2;
         padding-top: 100px;
@@ -360,16 +359,18 @@ html,body {
         justify-content: center;
         align-items: center
     }
-        .modal_sign_in .menu {
-            width: 50%;
-            height: 35%;
-            background-color: #770000;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: stretch;
-        }
+    
+    .modal_sign_in .menu {
+        width: 50%;
+        height: 35%;
+        background-color: #770000;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        margin: auto;
+    }
     
     .form_sign_in {
         width: 100%;
@@ -380,32 +381,39 @@ html,body {
         justify-content: center;
         align-items: stretch;
     }
-        .form_sign_in .title_sign_in {
-            align-self: center;
-            font-size: 2em;
-            margin: 3%;
-            color: white;
-        }
-    
-        .form_sign_in .input_sign_in {
-            height: 15%;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-        }
+    .form_sign_in .title_sign_in {
+        align-self: center;
+        font-size: 2em;
+        margin: 3%;
+        color: white;
+    }
 
-            .form_sign_in .input_sign_in label {
-                width: 37%;
-                text-align: end;
-                padding-right: 3%;
-                font-size: 1.5em;
-                color: white;
-            }
-            .form_sign_in .input_sign_in input {
-                font-size: 1.5em;
-                border-radius: 10px;
-            }
+    .form_sign_in .close_modal {
+        align-self: flex-end;
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .form_sign_in .input_sign_in {
+        height: 15%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .form_sign_in .input_sign_in label {
+        width: 37%;
+        text-align: end;
+        padding-right: 3%;
+        font-size: 1.5em;
+        color: white;
+    }
+    .form_sign_in .input_sign_in input {
+        font-size: 1.5em;
+        border-radius: 10px;
+    }
     
     .form_sign_in .button {
         font-size: 1.5em;
@@ -585,9 +593,8 @@ html,body {
     }
 
     .rankings_groups {
-        display: none;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
         padding-top: 100px;
         left: 0;
         top: 0;

@@ -1,0 +1,11 @@
+<button 
+    (click)="show_modal()"
+    class="btn_rankings_groups pointer" 
+    id="btn_rankings_groups">    
+    <i class="fas fa-users"></i>
+</button>
+
+<div id="rankings_groups" class="rankings_groups" [hidden]="!modal">
+    <span (click)="close_modal()">Cerrar</span>
+    <ListGuild></ListGuild>
+</div>

@@ -7,6 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 // JWT Module
 import { JwtModule } from '@auth0/angular-jwt';
 
+// Store and dev tools
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+
+// Reducers
+import { appReducers } from './store/app.reducers';
+
 // APP Component
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -18,6 +25,9 @@ import { ServicesModule } from './services/services.module';
 
 // Router
 import { AppRoutingModule } from './app.routing.module';
+
+// Environment
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -33,7 +43,12 @@ import { AppRoutingModule } from './app.routing.module';
     ServicesModule.forRoot(),
     JwtModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

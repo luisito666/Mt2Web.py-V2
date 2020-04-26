@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
-// Servicios
-import { LoginService } from 'src/app/services/login.service';
+//Redux
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app.reducers';
+import { HiddenLoginModal } from '../../../store/actions';
 
-// Interfaces
-import { User } from 'src/app/interfaces/user.simple';
 
 @Component({
   selector: 'app-login',
@@ -14,51 +13,20 @@ import { User } from 'src/app/interfaces/user.simple';
 })
 export class LoginComponent implements OnInit {
 
-  @ViewChild('Menu', {static: true}) DivMenu: ElementRef;
-  message: string;
-  user: User = {
-    login: null,
-    password: null
-  };
-  loginForm: FormGroup;
+  modal: boolean;
 
-  constructor(
-    private login: LoginService,
-    private renderer: Renderer2
-  ) {
-    this.loginForm = new FormGroup({
-      login : new FormControl('', [
-        Validators.required,
-        Validators.minLength(4)
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4)
-      ])
-    });
-    this.loginForm.reset(this.user);
-   }
+  constructor(   
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit() {
+    this.store.select('ui').subscribe(({modal_login}) => {
+      this.modal = modal_login;
+    })
   }
 
-  send() {
-    this.login.login( this.loginForm.value ).subscribe(
-      (success: any) => {
-          localStorage.setItem('token', success.token);
-          this.DivMenu.nativeElement.style.display = 'none';
-          this.loginForm.reset(this.user);
-      },
-      err => {
-          console.log(err);
-          this.message = 'Nombre de usuario o contraseña incorrecta';
-          setTimeout(() => {
-            this.message = '';
-          }, 3000);
-      }
-    );
-    // console.log(this.loginForm.value);
+  close_modal() {
+    this.store.dispatch(HiddenLoginModal(HiddenLoginModal({hidden: true})))
   }
-
 
 }
