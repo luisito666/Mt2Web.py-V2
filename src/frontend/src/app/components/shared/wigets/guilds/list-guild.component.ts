@@ -1,29 +1,24 @@
-import { Component, OnInit, ElementRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 // Services
 import { HttpService } from '../../../../services/http/http.service';
 
-// Redux
-import { Store } from '@ngrx/store'
-import { AppState } from '../../../../store/app.reducers'
-import { HiddenRankingGuildModal } from 'src/app/store/actions';
+// Interfaces
+import { DjangoResponse } from '../../../../interfaces/http.response';
+
 
 @Component({
     selector: 'ListGuild',
     templateUrl: './list-guild.component.html',
     styles: [],
-    // host: {
-    //     '(document:click)': 'onClick($event)',
-    // }
 })
 export class ListGuildComponent implements OnInit {
 
     guilds: any = [];
+    positions_class = ['fisrt_position', 'second_position', 'threeth_position', 'fourth_position', 'fith_position']
 
     constructor(
-        public http: HttpService,
-        private store: Store<AppState>,
-        private _eref: ElementRef
+        private http: HttpService,
     ) {}
 
     ngOnInit() {
@@ -31,16 +26,9 @@ export class ListGuildComponent implements OnInit {
     }
 
     load_guilds() {
-        this.http.get_guilds().catch();
+        this.http.get_guilds().subscribe(({results}: DjangoResponse) => {
+            this.guilds = results;
+        });
     }
-
-    // onClick(event) {
-    //     if (event.target.className === 'fas fa-users' || event.target.className === 'btn_rankings_groups pointer') {
-    //         return
-    //     }
-    //     if (!this._eref.nativeElement.contains(event.target)) {
-    //         this.store.dispatch(HiddenRankingGuildModal({hidden: true}))
-    //     }
-    // }
 
 }

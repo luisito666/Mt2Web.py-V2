@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../../services/http/http.service';
+
+// Store
+import { Store } from '@ngrx/store'
+import { AppState } from '../../../../store/app.reducers'
+import { ShowRankingPlayerModal, HiddenRankingPlayerModal } from '../../../../store/actions';
 
 @Component({
   selector: 'app-players',
@@ -8,16 +12,23 @@ import { HttpService } from '../../../../services/http/http.service';
 })
 export class PlayersComponent implements OnInit {
 
+  modal: boolean;
+
   constructor(
-    public http: HttpService
-  ) {
-      this.load_players();
+    private store: Store<AppState>
+  ) {}
+
+  ngOnInit() {
+    this.store.select('ui').subscribe(({modal_ranking_player}) => {
+      this.modal = modal_ranking_player;
+    })
   }
 
-  ngOnInit() {}
-
-  load_players() {
-    this.http.get_players().catch();
+  show_modal() {
+    this.store.dispatch(ShowRankingPlayerModal({show: true}))
   }
 
+  close_modal() {
+    this.store.dispatch(HiddenRankingPlayerModal({hidden: true}))
+  }
 }

@@ -18,17 +18,11 @@ export class MainManagerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authenticate.get_current_user()
+    if (this.login.isAuthenticated()) {
+      this.authenticate.get_current_user()
             .subscribe( res => console.log(res));
-    /* const session = this.haveSession()
-      .subscribe( (response: any) => {
-        console.log(response);
-        if (response.authenticated) {
-          this.authenticate.get_current_user()
-            .subscribe( res => console.log(res));
-          session.unsubscribe();
-        }
-      }); */
+    }
+    
   }
 
   haveSession(): Observable <any> {

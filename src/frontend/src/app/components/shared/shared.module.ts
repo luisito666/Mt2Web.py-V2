@@ -14,11 +14,13 @@ import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login_form.component'
 
 // Widgets
+// Guild
 import { GuildsComponent } from './wigets/guilds/guilds.component';
 import { ListGuildComponent } from './wigets/guilds/list-guild.component'
-
+// Players
 import { PlayersComponent } from './wigets/players/players.component';
-
+import { ListPlayersComponent } from './wigets/players/list-player.component';
+// Statics
 import { StaticsComponent } from './wigets/statics/statics.component';
 import { SidebarComponent } from './wigets/sidebar/sidebar.component';
 
@@ -37,7 +39,8 @@ import { SidebarComponent } from './wigets/sidebar/sidebar.component';
         SidebarComponent,
         MainManagerComponent,
         LoginFormComponent,
-        ListGuildComponent
+        ListGuildComponent,
+        ListPlayersComponent
     ],
     imports: [
         CommonModule,

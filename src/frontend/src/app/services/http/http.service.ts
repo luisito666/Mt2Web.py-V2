@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AccountSend } from '../../interfaces/account';
 import { User } from '../../interfaces/user.simple';
 import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+
 
 
 @Injectable()
 export class HttpService {
 
-  guilds: any;
-  players: any;
 
   baseUrl = environment.baseUrl;
 
@@ -32,17 +32,17 @@ export class HttpService {
 
   private post(url: string, body: any) {
     const data = JSON.stringify(body);
-    return this.http.post(url, body, this.get_headers());
+    return this.http.post(url, data, this.get_headers());
   }
 
-  async get_guilds() {
+  get_guilds() {
     const url = `${this.baseUrl}/api/guild_rank/`;
-    this.guilds = await this.get(url).toPromise();
+    return this.get(url);
   }
 
-  async get_players() {
+  get_players() {
     const url = `${this.baseUrl}/api/player_rank/`;
-    this.players = await this.get(url).toPromise();
+    return this.get(url);
   }
 
   create_user(userForm: AccountSend) {
