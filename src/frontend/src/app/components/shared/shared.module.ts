@@ -5,11 +5,11 @@ import { RouterModule } from '@angular/router';
 
 // Importando componentes.
 import { NavbarComponent } from './navbar/navbar.component';
-import { UserManagerComponent } from './user-manager/user-manager.component';
-import { UserManagerPlayersComponent } from './user-manager/user-manager-players.component';
-import { UserManagerPasswdComponent } from './user-manager/user-manager-passwd.component';
-import { UserManagerDonationsComponent } from './user-manager/user-manager-donations.component';
-import { MainManagerComponent } from './user-manager/main-manager.components';
+import { UserManagerComponent } from './user-manager/user-manager/user-manager.component';
+import { PlayersListComponent } from './user-manager/players/players.component';
+import { PasswdComponent } from './user-manager/password/password.component';
+import { DonationsComponet } from './user-manager/donation/donations.componet';
+import { MainManagerComponent } from './user-manager/main/main.components';
 import { LoginComponent } from './login/login.component';
 import { LoginFormComponent } from './login/login_form.component'
 
@@ -29,9 +29,9 @@ import { SidebarComponent } from './wigets/sidebar/sidebar.component';
     declarations: [
         NavbarComponent,
         UserManagerComponent,
-        UserManagerPlayersComponent,
-        UserManagerPasswdComponent,
-        UserManagerDonationsComponent,
+        PlayersListComponent,
+        PasswdComponent,
+        DonationsComponet,
         PlayersComponent,
         GuildsComponent,
         LoginComponent,

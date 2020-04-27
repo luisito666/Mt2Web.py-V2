@@ -4,7 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../../services/http/http.service';
 
 // Interfaces
-import {DjangoResponse} from '../../../../interfaces/http.response'
+import {DjangoResponse} from '../../../../interfaces/http.response';
+
+// Redux
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { HiddenRankingPlayerModal } from 'src/app/store/actions';
 
 @Component({
   selector: 'ListPlayer',
@@ -17,7 +22,8 @@ export class ListPlayersComponent implements OnInit {
   positions_class = ['fisrt_position', 'second_position', 'threeth_position', 'fourth_position', 'fith_position']
 
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    private store: Store<AppState>
   ) {
       this.load_players();
   }
@@ -28,6 +34,10 @@ export class ListPlayersComponent implements OnInit {
     this.http.get_players().subscribe(({results}: DjangoResponse) => {
       this.players = results.slice(0,5)
     })
+  }
+
+  close_modal() {
+    this.store.dispatch(HiddenRankingPlayerModal({hidden: true}))
   }
 
 }

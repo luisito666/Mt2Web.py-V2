@@ -27,8 +27,4 @@ export class PlayersComponent implements OnInit {
   show_modal() {
     this.store.dispatch(ShowRankingPlayerModal({show: true}))
   }
-
-  close_modal() {
-    this.store.dispatch(HiddenRankingPlayerModal({hidden: true}))
-  }
 }

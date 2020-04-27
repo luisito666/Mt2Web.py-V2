@@ -1,4 +1,4 @@
-import { Component, ElementRef } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicios
@@ -7,18 +7,16 @@ import { LoginService } from 'src/app/services/login.service';
 // Interfaces
 import { User } from 'src/app/interfaces/user.simple';
 
-//Redux
+// Redux
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store/app.reducers';
-import { HiddenLoginModal } from 'src/app/store/actions';
+import { AppState } from 'src/app/store/app.reducers';
+import { HiddenLoginModal, AddToken } from 'src/app/store/actions';
+
 
 @Component({
     selector: 'loginForm',
     templateUrl: './login_form.component.html',
-    styles: [],
-    // host: {
-    //     '(document:click)': 'onClick($event)',
-    // }
+    styles: []
 })
 export class LoginFormComponent {
 
@@ -32,8 +30,7 @@ export class LoginFormComponent {
 
     constructor(
         private login: LoginService,
-        private store: Store<AppState>,
-        private _eref: ElementRef
+        private store: Store<AppState>
     ) {
         this.loginForm = new FormGroup({
             login : new FormControl('', [
@@ -48,20 +45,17 @@ export class LoginFormComponent {
           this.loginForm.reset(this.user);
     }
 
-    // onClick(event) {
-    //     if (event.target.className === 'sign_in') {
-    //         return
-    //     }
-    //     if (!this._eref.nativeElement.contains(event.target)) {
-    //         this.store.dispatch(HiddenLoginModal({hidden: true}))
-    //     }
-    // }
-
     send() {
         this.login.login( this.loginForm.value ).subscribe(
           ({token}) => {
-              localStorage.setItem('token', token);          
+              // Add token to store
+              localStorage.setItem('token', token);
+              // Add to redux state
+              this.store.dispatch(AddToken({token: token}))
+              // Clean Form
               this.loginForm.reset(this.user);
+              // Close Modal
+              this.store.dispatch(HiddenLoginModal({hidden: true}))
           },
           err => {
               console.log(err);
@@ -71,6 +65,10 @@ export class LoginFormComponent {
               }, 3000);
           }
         );
+    }
+
+    close_modal() {
+      this.store.dispatch(HiddenLoginModal(HiddenLoginModal({hidden: true})))
     }
 }
 

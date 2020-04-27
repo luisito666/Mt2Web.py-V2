@@ -3,26 +3,32 @@ import { AuthenticateService } from 'src/app/services/services.module';
 import { LoginService } from 'src/app/services/login.service';
 import { Observable } from 'rxjs';
 
+// Redux
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { AddUser } from 'src/app/store/actions';
+
+// Interface
+import { UserLogin } from 'src/app/interfaces/user.simple';
+
+
 @Component({
-  selector: 'app-main-manager',
-  template: `
-  Información
-  `,
+  selector: 'main-manager',
+  templateUrl: './main.components.html',
   styles: []
 })
 export class MainManagerComponent implements OnInit {
 
   constructor(
     private authenticate: AuthenticateService,
-    private login: LoginService
+    private login: LoginService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
-    if (this.login.isAuthenticated()) {
-      this.authenticate.get_current_user()
-            .subscribe( res => console.log(res));
-    }
-    
+    this.store.select('user').subscribe( ({token}) => {
+      if (token) {}
+    })   
   }
 
   haveSession(): Observable <any> {

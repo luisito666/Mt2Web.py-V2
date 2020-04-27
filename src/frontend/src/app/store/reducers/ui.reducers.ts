@@ -5,18 +5,22 @@ import {
   ShowRankingGuildModal,
   HiddenRankingGuildModal,
   ShowRankingPlayerModal,
-  HiddenRankingPlayerModal
+  HiddenRankingPlayerModal,
+  ShowProfileModal,
+  HiddenProfileModal,
 } from '../actions';
 
 
 export interface UIState {
     modal_login: boolean;
+    modal_profile: boolean;
     modal_ranking_guild: boolean;
     modal_ranking_player: boolean;
 }
 
 export const UIInitialState: UIState = {
     modal_login: false,
+    modal_profile: false,
     modal_ranking_guild: false,
     modal_ranking_player: false
 }
@@ -45,6 +49,14 @@ const _UIReducer = createReducer(UIInitialState,
   on(HiddenRankingPlayerModal, (state, {hidden}) => ({
     ...state,
     modal_ranking_player: !hidden
+  })),
+  on(ShowProfileModal, (state, {show}) => ({
+    ...state,
+    modal_profile: show
+  })),
+  on(HiddenProfileModal, (state, {hidden}) => ({
+    ...state,
+    modal_profile: !hidden
   }))
 );
  

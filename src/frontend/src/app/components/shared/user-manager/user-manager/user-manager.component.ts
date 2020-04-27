@@ -1,5 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+
+// Redux
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { HiddenProfileModal, DeleteToken, DeleteUser } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-user-manager',
@@ -8,20 +13,28 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class UserManagerComponent implements OnInit {
 
-  @ViewChild('manager', {static: true}) modal: ElementRef;
+  modal: boolean
 
   constructor(
+    private store: Store<AppState>,
     public login: LoginService
   ) { }
 
   ngOnInit() {
-    document.getElementById('default').click();
+    this.store.select('ui').subscribe( ({modal_profile}) => {
+      this.modal = modal_profile;
+    })
   }
 
   logout() {
     this.login.logout();
-    this.modal.nativeElement.style.display = 'none';
+    this.store.dispatch(HiddenProfileModal({hidden: true}));
+    this.store.dispatch(DeleteToken());
+    this.store.dispatch(DeleteUser());
+  }
 
+  close_modal() {
+    this.store.dispatch(HiddenProfileModal({hidden: true}))
   }
 
   showMenu(event, menu) {

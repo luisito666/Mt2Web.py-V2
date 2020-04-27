@@ -25,8 +25,4 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  close_modal() {
-    this.store.dispatch(HiddenLoginModal(HiddenLoginModal({hidden: true})))
-  }
-
 }

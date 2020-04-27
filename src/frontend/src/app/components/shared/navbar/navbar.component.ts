@@ -5,7 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 // Redux
 import { Store } from '@ngrx/store'
 import { AppState } from '../../../store/app.reducers';
-import { ShowLoginModal } from '../../../store/actions';
+import { ShowLoginModal, ShowProfileModal } from '../../../store/actions';
 
 
 
@@ -21,7 +21,11 @@ export class NavbarComponent {
     private store: Store<AppState>
   ) { }
 
-  show_modal() {
+  show_login_modal() {
     this.store.dispatch(ShowLoginModal({show: true}))
+  }
+
+  show_profile_modal() {
+    this.store.dispatch(ShowProfileModal({show: true}))
   }
 }

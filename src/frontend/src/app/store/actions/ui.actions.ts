@@ -34,3 +34,14 @@ export const HiddenRankingPlayerModal = createAction(
     '[UI] Hidden Ranking Player Modal',
     props<{hidden: boolean}>()
 )
+
+// Profile Modal
+export const ShowProfileModal = createAction(
+    '[UI] Show Profile Modal',
+    props<{show: boolean}>()
+)
+
+export const HiddenProfileModal = createAction(
+    '[UI] Hidden Profile Modal',
+    props<{hidden: boolean}>()
+)

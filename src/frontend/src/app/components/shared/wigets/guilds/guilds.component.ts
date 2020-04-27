@@ -28,11 +28,6 @@ export class GuildsComponent implements OnInit {
   show_modal() {
     this.store.dispatch(ShowRankingGuildModal({show: true}))
   }
-
-  close_modal() {
-    this.store.dispatch(HiddenRankingGuildModal({hidden: true}))
-  }
-
 }
 
 

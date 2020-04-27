@@ -5,6 +5,10 @@ import { HttpService } from '../../../../services/http/http.service';
 
 // Interfaces
 import { DjangoResponse } from '../../../../interfaces/http.response';
+// Redux
+import { AppState } from 'src/app/store/app.reducers';
+import { Store } from '@ngrx/store';
+import { HiddenRankingGuildModal } from 'src/app/store/actions';
 
 
 @Component({
@@ -19,6 +23,7 @@ export class ListGuildComponent implements OnInit {
 
     constructor(
         private http: HttpService,
+        private store: Store<AppState>
     ) {}
 
     ngOnInit() {
@@ -29,6 +34,10 @@ export class ListGuildComponent implements OnInit {
         this.http.get_guilds().subscribe(({results}: DjangoResponse) => {
             this.guilds = results;
         });
+    }
+
+    close_modal() {
+        this.store.dispatch(HiddenRankingGuildModal({hidden: true}))
     }
 
 }
