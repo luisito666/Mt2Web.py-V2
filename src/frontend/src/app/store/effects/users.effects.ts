@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import {Router} from '@angular/router'
-
 // RXJS
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';

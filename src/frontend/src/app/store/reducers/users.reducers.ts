@@ -14,9 +14,19 @@ export interface UsersState {
     user: UserLogin;
 }
 
+const initialUser: UserLogin = {
+    login: '',
+    email: '',
+    real_name: '',
+    social_id: '',
+    status: '',
+    coins: 0,
+    create_time: ''
+}
+
 export const UsersInitialState: UsersState = {
     token: null,
-    user: null
+    user: initialUser
 }
 
 const _UsersReducer = createReducer(UsersInitialState,
@@ -34,7 +44,7 @@ const _UsersReducer = createReducer(UsersInitialState,
     })),
     on(DeleteUser, (state) => ({
         ...state,
-        user: null
+        user: initialUser
     })),
 
 )

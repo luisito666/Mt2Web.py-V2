@@ -9,7 +9,6 @@ export class PasswdComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

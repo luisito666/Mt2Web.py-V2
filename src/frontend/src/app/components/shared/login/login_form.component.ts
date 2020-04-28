@@ -10,7 +10,7 @@ import { User } from 'src/app/interfaces/user.simple';
 // Redux
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducers';
-import { HiddenLoginModal, AddToken } from 'src/app/store/actions';
+import { HiddenLoginModal, AddToken, ShowProfileModal } from 'src/app/store/actions';
 
 
 @Component({
@@ -55,7 +55,8 @@ export class LoginFormComponent {
               // Clean Form
               this.loginForm.reset(this.user);
               // Close Modal
-              this.store.dispatch(HiddenLoginModal({hidden: true}))
+              this.store.dispatch(HiddenLoginModal({hidden: true}));
+              this.store.dispatch(ShowProfileModal({show: true}));
           },
           err => {
               console.log(err);

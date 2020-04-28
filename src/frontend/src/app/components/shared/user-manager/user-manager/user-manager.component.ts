@@ -11,8 +11,10 @@ import { HiddenProfileModal, DeleteToken, DeleteUser } from 'src/app/store/actio
   templateUrl: './user-manager.component.html',
   styles: []
 })
+
 export class UserManagerComponent implements OnInit {
 
+  index_menu: any;
   modal: boolean
 
   constructor(
@@ -21,6 +23,12 @@ export class UserManagerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.index_menu = {
+        "main-manager": true,
+        "manager-player-list": false,
+        "manager-passwd": false,
+        "manager-donations": false,
+    }
     this.store.select('ui').subscribe( ({modal_profile}) => {
       this.modal = modal_profile;
     })
@@ -37,21 +45,33 @@ export class UserManagerComponent implements OnInit {
     this.store.dispatch(HiddenProfileModal({hidden: true}))
   }
 
-  showMenu(event, menu) {
-    /* Maneja el menu de tabs de administracion del usuario*/
-    let i;
-    let content;
-    let tabs;
-    content = document.getElementsByClassName('content');
-    for (i = 0; i < content.length; i++) {
-      content[i].style.display = 'none';
+  show_menu(id: string) {
+    switch(id){
+      case '1':
+        this.index_menu['main-manager'] = true;
+        this.index_menu['manager-player-list'] = false;
+        this.index_menu['manager-passwd'] = false;
+        this.index_menu['manager-donations'] = false;
+        break
+      case '2':
+        this.index_menu['main-manager'] = false;
+        this.index_menu['manager-player-list'] = true;
+        this.index_menu['manager-passwd'] = false;
+        this.index_menu['manager-donations'] = false;
+        break
+      case '3':
+        this.index_menu['main-manager'] = false;
+        this.index_menu['manager-player-list'] = false;
+        this.index_menu['manager-passwd'] = true;
+        this.index_menu['manager-donations'] = false;
+        break
+      case '4':
+        this.index_menu['main-manager'] = false;
+        this.index_menu['manager-player-list'] = false;
+        this.index_menu['manager-passwd'] = false;
+        this.index_menu['manager-donations'] = true;
+        break
     }
-    tabs = document.getElementsByClassName('tabs');
-    for (i = 0; i < tabs.length; i++) {
-      tabs[i].className = tabs[i].className.replace(' active', '');
-    }
-    document.getElementById(menu).style.display = 'block';
-    event.currentTarget.className += ' active';
   }
 
 }

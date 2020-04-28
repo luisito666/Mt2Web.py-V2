@@ -9,7 +9,6 @@ export class DonationsComponet implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
