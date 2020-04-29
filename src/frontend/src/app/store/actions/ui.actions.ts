@@ -45,3 +45,25 @@ export const HiddenProfileModal = createAction(
     '[UI] Hidden Profile Modal',
     props<{hidden: boolean}>()
 )
+
+// Sub Components Modal Profile
+export const TogleManagerMain = createAction(
+    '[UI] Toggle Manager Main',
+    props<{toggle: boolean}>()
+)
+
+export const TogleManagerPlayer = createAction(
+    '[UI] Toggle Manager Player',
+    props<{toggle: boolean}>()
+)
+
+export const TogleManagerPass = createAction(
+    '[UI] Toggole Manager Password',
+    props<{toggle: boolean}>()
+)
+
+export const TogleManagerDonation = createAction(
+    '[UI] Toggle Manager Donation',
+    props<{toggle: boolean}>()
+)
+

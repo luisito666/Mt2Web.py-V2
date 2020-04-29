@@ -4,7 +4,15 @@ import { LoginService } from 'src/app/services/login.service';
 // Redux
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducers';
-import { HiddenProfileModal, DeleteToken, DeleteUser } from 'src/app/store/actions';
+import { 
+  HiddenProfileModal, 
+  DeleteToken, 
+  DeleteUser, 
+  TogleManagerMain,
+  TogleManagerPlayer,
+  TogleManagerPass,
+  TogleManagerDonation
+} from 'src/app/store/actions';
 
 @Component({
   selector: 'app-user-manager',
@@ -14,7 +22,10 @@ import { HiddenProfileModal, DeleteToken, DeleteUser } from 'src/app/store/actio
 
 export class UserManagerComponent implements OnInit {
 
-  index_menu: any;
+  window_manager_main: boolean;
+  window_manager_player: boolean;
+  window_manager_passwd: boolean;
+  window_manager_donations: boolean;
   modal: boolean
 
   constructor(
@@ -23,14 +34,19 @@ export class UserManagerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.index_menu = {
-        "main-manager": true,
-        "manager-player-list": false,
-        "manager-passwd": false,
-        "manager-donations": false,
-    }
-    this.store.select('ui').subscribe( ({modal_profile}) => {
+    this.store.select('ui').subscribe( ({
+      modal_profile, 
+      window_manager_main, 
+      window_manager_player,
+      window_manager_passwd,
+      window_manager_donations
+    }) => {
       this.modal = modal_profile;
+      this.window_manager_main = window_manager_main;
+      this.window_manager_player = window_manager_player;
+      this.window_manager_passwd = window_manager_passwd;
+      this.window_manager_donations = window_manager_donations;
+
     })
   }
 
@@ -48,28 +64,16 @@ export class UserManagerComponent implements OnInit {
   show_menu(id: string) {
     switch(id){
       case '1':
-        this.index_menu['main-manager'] = true;
-        this.index_menu['manager-player-list'] = false;
-        this.index_menu['manager-passwd'] = false;
-        this.index_menu['manager-donations'] = false;
+        this.store.dispatch(TogleManagerMain({toggle: true}))
         break
       case '2':
-        this.index_menu['main-manager'] = false;
-        this.index_menu['manager-player-list'] = true;
-        this.index_menu['manager-passwd'] = false;
-        this.index_menu['manager-donations'] = false;
+        this.store.dispatch(TogleManagerPlayer({toggle: true}))
         break
       case '3':
-        this.index_menu['main-manager'] = false;
-        this.index_menu['manager-player-list'] = false;
-        this.index_menu['manager-passwd'] = true;
-        this.index_menu['manager-donations'] = false;
+        this.store.dispatch(TogleManagerPass({toggle: true}))
         break
       case '4':
-        this.index_menu['main-manager'] = false;
-        this.index_menu['manager-player-list'] = false;
-        this.index_menu['manager-passwd'] = false;
-        this.index_menu['manager-donations'] = true;
+        this.store.dispatch(TogleManagerDonation({toggle: true}))
         break
     }
   }
