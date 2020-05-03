@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Environments
-import { environment } from '../../../../environments/environment'
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-description',
