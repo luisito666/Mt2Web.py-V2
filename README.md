@@ -78,3 +78,8 @@ make run-prod
 
 Nota: Es recomendado usar este comando cuando vamos a montar la pagina para su uso.
 
+## TODO
+* Pagina de cambio de correo.
+* Pagina de recuperar el password.
+* Venta de personajes por pagina web.
+
