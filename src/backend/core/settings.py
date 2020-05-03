@@ -217,6 +217,6 @@ ISSUER = None
 TOKEN_TYPE_CLAIM = 'token_type'
 USER_ID_FIELD = 'id'
 USER_ID_CLAIM = 'user_id'
-ACCESS_TOKEN_LIFETIME = timedelta(minutes=2)
+ACCESS_TOKEN_LIFETIME = timedelta(minutes=15)
 AUTH_HEADER_TYPES = ('Bearer',)
 AUTH_TOKEN_CLASSES = ('applications.api.tokens.AccessToken',)
