@@ -6,7 +6,7 @@ from .models import Player, Guild
 
 
 class PlayerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'account_id', 'name', 'level', 'exp', 'last_play')
+    list_display = ('id', 'account_id', 'name', 'level', 'exp', 'last_play', 'ip')
     search_fields = ['name']
 
 

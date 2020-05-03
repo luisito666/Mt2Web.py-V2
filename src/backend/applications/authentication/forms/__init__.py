@@ -1,1 +1,4 @@
-from .forms import AccountCreationForm
+from .forms import (
+    AccountCreationForm,
+    AccountEditForm
+)

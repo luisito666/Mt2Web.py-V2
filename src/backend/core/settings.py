@@ -207,6 +207,10 @@ REST_FRAMEWORK = {
     )
 }
 
+## Banned a available account
+BANNED = 'BLOCK'
+ACCEPT = 'OK'
+
 
 # Config of JWT Token
 ALGORITHM = 'HS256' 

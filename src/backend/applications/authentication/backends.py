@@ -29,16 +29,16 @@ class ModelBackend(BaseBackend):
             # difference between an existing and a nonexistent user (#20760).
             UserModel().set_password(password)
         else:
-            if user.check_password(password) and self.user_can_authenticate(user):
+            if user.check_password(password) and not user.is_banned:
                 return user
 
-    def user_can_authenticate(self, user):
-        """
-        Reject users with is_active=False. Custom user models that don't have
-        that attribute are allowed.
-        """
-        is_active = getattr(user, 'status', None)
-        if is_active == 'OK':
-            return True
-        return False
+    # def user_can_authenticate(self, user):
+    #     """
+    #     Reject users with is_active=False. Custom user models that don't have
+    #     that attribute are allowed.
+    #     """
+    #     is_active = getattr(user, 'status', None)
+    #     if is_active == 'OK':
+    #         return True
+    #     return False
 

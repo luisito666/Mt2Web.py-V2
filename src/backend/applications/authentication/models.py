@@ -77,8 +77,3 @@ class Account(AbstractAccount):
     """
         You can add more options to account
     """
-    @property
-    def is_active(self):
-        if self.status == 'OK':
-            return True
-        return False

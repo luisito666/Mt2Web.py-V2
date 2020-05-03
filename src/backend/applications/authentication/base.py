@@ -14,12 +14,17 @@ from .hashers import (
 # Translation
 from django.utils.translation import gettext_lazy as _
 
+# import constant for status
+from core.settings import (
+    BANNED,
+    ACCEPT
+)
 
 # Account Base
 class AbstractBaseAccount(models.Model):
     STATUS_ACCOUNT = (
-        ('OK', _('Available')),
-        ('BLOCK', _('Banned')),
+        (ACCEPT, _('Available')),
+        (BANNED, _('Banned')),
     )
     password = models.CharField(_('password'), max_length=45)
     status = models.CharField(max_length=8,default="OK", choices=STATUS_ACCOUNT)
@@ -37,9 +42,7 @@ class AbstractBaseAccount(models.Model):
     
     @property
     def is_banned(self):
-        if self.status == 'BLOCK':
-            return True
-        return False
+        return self.status == BANNED
         
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
