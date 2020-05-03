@@ -15,3 +15,9 @@ export interface AccountSend {
     email: string;
     social_id: number;
 }
+
+export interface CHPass {
+    current_password: string;
+    new_password: string;
+    new_password_again: string
+}

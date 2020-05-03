@@ -3,7 +3,7 @@
         Ranking de Guerreros
     </p>
     <div  (click)="close_modal()"
-          class="btn_close">
+          class="btn_close pointer">
         <i class="far fa-times-circle"></i>
     </div>
     <div *ngFor="let player of players; let i = index" class="{{ positions_class[i] }} text_position">

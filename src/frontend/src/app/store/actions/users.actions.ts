@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 // Interface
-import { UserLogin } from 'src/app/interfaces/user.simple';
+import { UserLogin } from 'src/app/interfaces/';
 
 // Users Actions
 
@@ -21,4 +21,9 @@ export const AddUser = createAction(
 
 export const DeleteUser = createAction(
     '[USERS] Delete user from Store',
+)
+
+export const AddUserError = createAction(
+    '[USERS] Error to load user',
+    props<{error: any}>()
 )

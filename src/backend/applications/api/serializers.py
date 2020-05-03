@@ -90,22 +90,43 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class CurrentUserSerializer(serializers.ModelSerializer):
-
+    """
+        Current user serializer
+    """
     class Meta:
         model = User
-        fields = ('login', 'status', 'real_name', 'social_id', 
+        fields = ('login', 'status', 'real_name', 
         'email', 'coins', 'create_time')
 
 
 class RankingPlayerSerializer(serializers.Serializer):
-	account_id = serializers.IntegerField()
-	name = serializers.CharField()	
-	level = serializers.IntegerField()
-	exp = serializers.IntegerField()	
+    """
+        Serializer For Players
+    """
+    account_id = serializers.IntegerField()
+    name = serializers.CharField()	
+    level = serializers.IntegerField()
+    exp = serializers.IntegerField()	
 
 
 class RankingGuildSerializer(serializers.Serializer):
+    """
+        Serializer for Guilds
+    """
     name = serializers.CharField()
     level = serializers.IntegerField()
     exp = serializers.IntegerField()
     ladder_point = serializers.IntegerField()
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+    """
+    """
+    current_password = PasswordField()
+    new_password = PasswordField()
+    new_password_again = PasswordField()
+
+    def validate(self, data):
+        if data['new_password'] != data['new_password_again']:
+            raise serializers.ValidationError('password must be equal')
+        return data

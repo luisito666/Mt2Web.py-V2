@@ -3,7 +3,8 @@ import {
     AddToken,
     DeleteToken,
     AddUser,
-    DeleteUser
+    DeleteUser,
+    AddUserError
 } from '../actions';
 
 import { UserLogin } from 'src/app/interfaces/user.simple';
@@ -12,13 +13,13 @@ import { UserLogin } from 'src/app/interfaces/user.simple';
 export interface UsersState {
     token: string;
     user: UserLogin;
+    error: any
 }
 
 const initialUser: UserLogin = {
     login: '',
     email: '',
     real_name: '',
-    social_id: '',
     status: '',
     coins: 0,
     create_time: ''
@@ -26,7 +27,8 @@ const initialUser: UserLogin = {
 
 export const UsersInitialState: UsersState = {
     token: null,
-    user: initialUser
+    user: initialUser,
+    error: null
 }
 
 const _UsersReducer = createReducer(UsersInitialState,
@@ -46,7 +48,10 @@ const _UsersReducer = createReducer(UsersInitialState,
         ...state,
         user: initialUser
     })),
-
+    on(AddUserError, (state, {error}) => ({
+        ...state,
+        error: error
+    }))
 )
 
 export function UsersReducer(state, action) {

@@ -68,32 +68,65 @@ class TestPermision(APIView):
 
 
 class RankingGuilds(generics.ListAPIView):
-	queryset = Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
-	serializer_class = serializers.RankingGuildSerializer
-	pagination_class = RankinPageNumber
+    """ 
+        Ranking information for Guild 
+    """
+    queryset = Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
+    serializer_class = serializers.RankingGuildSerializer
+    pagination_class = RankinPageNumber
 
 
 class RankingPlayers(generics.ListAPIView):
-	queryset = Player.objects.all().exclude(Q(name__contains='[')).order_by('-level','-exp')
-	serializer_class = serializers.RankingPlayerSerializer
-	pagination_class = RankinPageNumber
+    """ 
+        Ranking information for Players 
+    """
+    queryset = Player.objects.all().exclude(Q(name__contains='[')).order_by('-level','-exp')
+    serializer_class = serializers.RankingPlayerSerializer
+    pagination_class = RankinPageNumber
 
 
 class Info(BaseInfo):
+    """
+        Verify is user exist in database
+    """
     permission_classes = (AllowAny,)
     model_class = Account
 
 
 class RegisterGeneric(generics.CreateAPIView):
+    """
+        Register Users into database.
+    """
     queryset = Account.objects.all()
     serializer_class = serializers.RegisterSerializer
     permission_classes = (AllowAny,)
 
 
 class CurrentUserView(APIView):
+    """
+        Return current user
+    """
     serializer_class = serializers.CurrentUserSerializer
     permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         serializer = self.serializer_class(request.user)
         return Response(serializer.data)
+
+
+class ChangePassword(APIView):
+    """
+        Change Password for current user
+    """
+    serializer_class = serializers.ChangePasswordSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        user = request.user
+        if serializer.is_valid(raise_exception=True):
+            if user.check_password(serializer.validated_data['current_password']):
+                user.set_password(serializer.validated_data['new_password'])
+                user.save()
+                return Response({'message': 'Change success'})
+            return Response({'meesage': 'Password dont match'}, status=status.HTTP_401_UNAUTHORIZED)

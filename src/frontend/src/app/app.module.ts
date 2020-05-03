@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 // JWT Module
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 
 // Store and dev tools
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -34,6 +34,19 @@ import { AppRoutingModule } from './app.routing.module';
 // Environment
 import { environment } from 'src/environments/environment';
 
+import {token_getter} from './services/token-getter';
+
+// JWT Config
+const JWTConfig: JwtModuleOptions = {
+  config: {
+    tokenGetter: token_getter,
+    whitelistedDomains: [ environment.baseUrl ],
+    blacklistedRoutes: [
+        environment.baseUrl + '/api/signup/',
+        environment.baseUrl + '/api/token/',
+    ]
+  }
+}
 
 @NgModule({
   declarations: [
@@ -46,7 +59,7 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     HttpClientModule,
     ServicesModule.forRoot(),
-    JwtModule,
+    JwtModule.forRoot(JWTConfig),
     AppRoutingModule,
     RouterModule,
     StoreModule.forRoot(appReducers),

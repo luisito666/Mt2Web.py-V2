@@ -30,7 +30,7 @@ export class UsersEffects {
                 () => this.authenticate.get_current_user()
                     .pipe(
                         map((user: UserLogin) => usersActions.AddUser({user: user}) ),
-                        catchError( err => of(usersActions.DeleteUser()) )
+                        catchError( err => of(usersActions.AddUserError({error: err})) )
                     )
             )
         )

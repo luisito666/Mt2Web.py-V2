@@ -1,26 +1,41 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AccountSend } from '../../interfaces/account';
-import { User } from '../../interfaces/user.simple';
+import { User, CHPass } from '../../interfaces/';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
-
-
+// Redux
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
 
 @Injectable()
 export class HttpService {
 
-
+  token: string;
   baseUrl = environment.baseUrl;
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private store: Store<AppState>
+  ) {
+    this.store.select('user').subscribe(({token}) => {
+      this.token = token;
+    })
+  }
 
   private get_headers() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
+      })
+    };
+    return httpOptions;
+  }
+
+  private get_headers_token(token: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + token
       })
     };
     return httpOptions;
@@ -59,6 +74,12 @@ export class HttpService {
     const url = `${this.baseUrl}/api/token/`;
     const body = JSON.stringify(LoginData);
     return this.http.post(url, body, this.get_headers());
+  }
+
+  change_password(payload: CHPass) {
+    const url = `${this.baseUrl}/api/change_pass/`;
+    const body = JSON.stringify(payload);
+    return this.http.post(url, body, this.get_headers_token(this.token));
   }
 
 }
