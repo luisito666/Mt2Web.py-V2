@@ -82,4 +82,5 @@ Nota: Es recomendado usar este comando cuando vamos a montar la pagina para su u
 * Pagina de cambio de correo.
 * Pagina de recuperar el password.
 * Venta de personajes por pagina web.
+* Banear desde el admin panel por direccion IP
 
