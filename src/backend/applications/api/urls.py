@@ -13,6 +13,7 @@ urlpatterns = [
     path('guild_rank/', views.RankingGuilds.as_view(), name='guild_rank'),
     path('player_rank/', views.RankingPlayers.as_view(), name='player_rank'),
     path('current_user/', views.CurrentUserView.as_view(), name='current_user'),
+    path('current_players/', views.CurrentUserPlayersView.as_view(), name='current_user'),
     path('change_pass/', views.ChangePassword.as_view(), name='change_pass' ),
     path('info/<str:username>', views.Info.as_view(), name='info')
 ]

@@ -5,7 +5,12 @@ import { HttpService } from './http/http.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 // Interfaces
-import { User } from '../interfaces/user.simple';
+import { User } from '../interfaces/';
+
+// Store
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/app.reducers';
+import { DeleteToken, DeleteUser } from '../store/actions';
 
 const helper = new JwtHelperService();
 
@@ -16,7 +21,8 @@ const helper = new JwtHelperService();
 export class LoginService {
 
     constructor(
-        private http: HttpService
+        private http: HttpService,
+        private store: Store<AppState>
     ) {}
 
     public login(UserData: User) {
@@ -32,6 +38,8 @@ export class LoginService {
 
     public logout() {
         localStorage.removeItem('token');
+        this.store.dispatch(DeleteToken());
+        this.store.dispatch(DeleteUser());
     }
 
     public isAuthenticated() {

@@ -53,12 +53,12 @@ export class UserManagerComponent implements OnInit {
   logout() {
     this.login.logout();
     this.store.dispatch(HiddenProfileModal({hidden: true}));
-    this.store.dispatch(DeleteToken());
-    this.store.dispatch(DeleteUser());
+    this.store.dispatch(TogleManagerMain({toggle: true}))
   }
 
   close_modal() {
     this.store.dispatch(HiddenProfileModal({hidden: true}))
+    this.store.dispatch(TogleManagerMain({toggle: true}))
   }
 
   show_menu(id: string) {

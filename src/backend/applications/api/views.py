@@ -114,6 +114,20 @@ class CurrentUserView(APIView):
         return Response(serializer.data)
 
 
+class CurrentUserPlayersView(APIView):
+    """
+        Show player for current user login
+    """
+    serializer_class = serializers.RankingPlayerSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        userid = request.user.id
+        players = Player.objects.filter(account_id=userid)
+        serializer = self.serializer_class(players, many=True)
+        return Response(serializer.data)
+
+
 class ChangePassword(APIView):
     """
         Change Password for current user

@@ -37,4 +37,9 @@ export class AuthenticateService {
     return this.get(url);
   }
 
+  get_current_players() {
+    const url = `${this.baseUrl}/api/current_players/`;
+    return this.get(url);
+  }
+
 }

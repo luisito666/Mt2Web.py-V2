@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 // Interface
-import { UserLogin } from 'src/app/interfaces/';
+import { UserLogin, Player } from 'src/app/interfaces/';
 
 // Users Actions
 
@@ -25,5 +25,19 @@ export const DeleteUser = createAction(
 
 export const AddUserError = createAction(
     '[USERS] Error to load user',
+    props<{error: any}>()
+)
+
+export const AddPlayer = createAction(
+    '[USERS] Add Player to Store',
+    props<{players: Player[]}>()
+)
+
+export const DeletePlayer = createAction(
+    '[USERS] Delete Player from Store',
+)
+
+export const AddPlayerError = createAction(
+    '[USERS] Error to load Player',
     props<{error: any}>()
 )

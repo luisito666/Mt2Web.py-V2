@@ -4,15 +4,19 @@ import {
     DeleteToken,
     AddUser,
     DeleteUser,
-    AddUserError
+    AddUserError,
+    AddPlayer,
+    DeletePlayer,
+    AddPlayerError
 } from '../actions';
 
-import { UserLogin } from 'src/app/interfaces/user.simple';
+import { UserLogin, Player } from 'src/app/interfaces/';
 
 
 export interface UsersState {
     token: string;
     user: UserLogin;
+    players: Player[]
     error: any
 }
 
@@ -28,6 +32,7 @@ const initialUser: UserLogin = {
 export const UsersInitialState: UsersState = {
     token: null,
     user: initialUser,
+    players: [],
     error: null
 }
 
@@ -49,6 +54,18 @@ const _UsersReducer = createReducer(UsersInitialState,
         user: initialUser
     })),
     on(AddUserError, (state, {error}) => ({
+        ...state,
+        error: error
+    })),
+    on(AddPlayer, (state, {players}) => ({
+        ...state,
+        players: players
+    })),
+    on(DeletePlayer, (state) => ({
+        ...state,
+        players: null
+    })),
+    on(AddPlayerError, (state, {error}) => ({
         ...state,
         error: error
     }))

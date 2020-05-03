@@ -12,7 +12,7 @@ import * as usersActions from '../actions';
 import { AuthenticateService } from 'src/app/services/services.module';
 
 // Interface
-import { UserLogin } from 'src/app/interfaces/user.simple';
+import { UserLogin, Player } from 'src/app/interfaces/';
 
 @Injectable()
 export class UsersEffects {
@@ -31,6 +31,19 @@ export class UsersEffects {
                     .pipe(
                         map((user: UserLogin) => usersActions.AddUser({user: user}) ),
                         catchError( err => of(usersActions.AddUserError({error: err})) )
+                    )
+            )
+        )
+    )
+
+    AddCurrentPlayers = createEffect(
+        () => this.actions$.pipe(
+            ofType( usersActions.TogleManagerPlayer ),
+            mergeMap(
+                () => this.authenticate.get_current_players()
+                    .pipe(
+                        map((players: Player[]) => usersActions.AddPlayer({players: players}) ),
+                        catchError( err => of(usersActions.AddPlayerError({error: err})) )
                     )
             )
         )
