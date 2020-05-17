@@ -11,7 +11,8 @@ import { PasswdComponent } from './user-manager/password/password.component';
 import { DonationsComponet } from './user-manager/donation/donations.componet';
 import { MainManagerComponent } from './user-manager/main/main.components';
 import { LoginComponent } from './login/login.component';
-import { LoginFormComponent } from './login/login_form.component'
+import { LoginFormComponent } from './login/login_form.component';
+import { ChatComponet } from './user-manager/chat/chat.component';
 
 // Widgets
 // Guild
@@ -40,7 +41,8 @@ import { SidebarComponent } from './wigets/sidebar/sidebar.component';
         MainManagerComponent,
         LoginFormComponent,
         ListGuildComponent,
-        ListPlayersComponent
+        ListPlayersComponent,
+        ChatComponet
     ],
     imports: [
         CommonModule,

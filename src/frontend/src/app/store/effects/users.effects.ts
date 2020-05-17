@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+
+// Efects
+import { Actions, createEffect, ofType,  } from '@ngrx/effects';
 
 // RXJS
 import { mergeMap, map, catchError } from 'rxjs/operators';
@@ -8,11 +10,11 @@ import { of } from 'rxjs';
 // Actions
 import * as usersActions from '../actions';
 
-// Service
+// Services
 import { AuthenticateService } from 'src/app/services/services.module';
 
 // Interface
-import { UserLogin, Player } from 'src/app/interfaces/';
+import { UserLogin } from 'src/app/interfaces/';
 
 @Injectable()
 export class UsersEffects {
@@ -30,23 +32,23 @@ export class UsersEffects {
                 () => this.authenticate.get_current_user()
                     .pipe(
                         map((user: UserLogin) => usersActions.AddUser({user: user}) ),
-                        catchError( err => of(usersActions.AddUserError({error: err})) )
+                        catchError( err => of(usersActions.AddUserError({error: err}))),
                     )
             )
         )
     )
 
-    AddCurrentPlayers = createEffect(
-        () => this.actions$.pipe(
-            ofType( usersActions.TogleManagerPlayer ),
-            mergeMap(
-                () => this.authenticate.get_current_players()
-                    .pipe(
-                        map((players: Player[]) => usersActions.AddPlayer({players: players}) ),
-                        catchError( err => of(usersActions.AddPlayerError({error: err})) )
-                    )
-            )
-        )
-    )
+    // AddCurrentPlayers = createEffect(
+    //     () => this.actions$.pipe(
+    //         ofType( usersActions.TogleManagerPlayer ),
+    //         mergeMap(
+    //             () => this.authenticate.get_current_players()
+    //                 .pipe(
+    //                     map((players: Player[]) => usersActions.AddPlayer({players: players}) ),
+    //                     catchError( err => of(usersActions.AddPlayerError({error: err})) )
+    //                 )
+    //         )
+    //     )
+    // )
 
 }

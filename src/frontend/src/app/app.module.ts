@@ -15,7 +15,6 @@ import { EffectsModule } from '@ngrx/effects';
 // Effects 
 import { EffectsArray } from './store/effects';
 
-
 // Reducers
 import { appReducers } from './store/app.reducers';
 
@@ -34,7 +33,11 @@ import { AppRoutingModule } from './app.routing.module';
 // Environment
 import { environment } from 'src/environments/environment';
 
-import {token_getter} from './services/token-getter';
+// Token getter
+import { token_getter } from './services/token-getter';
+
+// SocketIO
+import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io'
 
 // JWT Config
 const JWTConfig: JwtModuleOptions = {
@@ -46,6 +49,11 @@ const JWTConfig: JwtModuleOptions = {
         environment.baseUrl + '/api/token/',
     ]
   }
+}
+
+// SocketIO Config
+const SocketConfig: SocketIoConfig = {
+  url: environment.socketUrl
 }
 
 @NgModule({
@@ -62,6 +70,7 @@ const JWTConfig: JwtModuleOptions = {
     JwtModule.forRoot(JWTConfig),
     AppRoutingModule,
     RouterModule,
+    SocketIoModule.forRoot(SocketConfig),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot( EffectsArray ),
     StoreDevtoolsModule.instrument({

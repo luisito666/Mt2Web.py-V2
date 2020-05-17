@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+// SocketService
+import { WebsocketService } from './websocket.service';
+
 // import services
 import { HttpService } from './http/http.service';
 import { AuthenticateService } from './http/authenticate.service';
@@ -21,7 +24,8 @@ export class ServicesModule {
             ngModule: ServicesModule,
             providers: [
                 HttpService,
-                AuthenticateService
+                AuthenticateService,
+                WebsocketService
             ]
         };
     }

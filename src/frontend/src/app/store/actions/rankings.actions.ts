@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
+// Interfaces
 import { Guild, Player } from '../../interfaces/';
 
 // Guild Actions
@@ -14,11 +15,7 @@ export const LoadPlayers = createAction(
     props<{players: Player[]}>()
 );
 
-
 export const LoadError = createAction(
     '[GUILDS] Load Error',
     props<{error: any[]}>()
 );
-
-
-

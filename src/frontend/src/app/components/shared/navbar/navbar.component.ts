@@ -1,4 +1,6 @@
 import { Component  } from '@angular/core';
+import { Router } from '@angular/router';
+
 // Services
 import { LoginService } from 'src/app/services/login.service';
 
@@ -6,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { Store } from '@ngrx/store'
 import { AppState } from '../../../store/app.reducers';
 import { ShowLoginModal, ShowProfileModal } from '../../../store/actions';
+
 
 
 
@@ -18,7 +21,8 @@ export class NavbarComponent {
 
   constructor(
     public login: LoginService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) { }
 
   show_login_modal() {
@@ -27,5 +31,6 @@ export class NavbarComponent {
 
   show_profile_modal() {
     this.store.dispatch(ShowProfileModal({show: true}))
+    this.router.navigate(['/modal', {outlets: {'modal': ['main']}}])
   }
 }

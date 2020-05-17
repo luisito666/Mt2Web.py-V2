@@ -5,10 +5,12 @@ export interface AppState {
     ui: reducers.UIState,
     user: reducers.UsersState,
     ranking: reducers.RankingsState
+    messages: reducers.MessageState
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
     ui: reducers.UIReducer,
     user: reducers.UsersReducer,
-    ranking: reducers.RankingReducer
+    ranking: reducers.RankingReducer,
+    messages: reducers.MessageReducer
 }

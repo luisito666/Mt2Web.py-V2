@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicios
@@ -11,6 +12,7 @@ import { User } from 'src/app/interfaces/user.simple';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.reducers';
 import { HiddenLoginModal, AddToken, ShowProfileModal } from 'src/app/store/actions';
+
 
 
 @Component({
@@ -30,7 +32,8 @@ export class LoginFormComponent {
 
     constructor(
         private login: LoginService,
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private router: Router
     ) {
         this.loginForm = new FormGroup({
             login : new FormControl('', [
@@ -57,6 +60,7 @@ export class LoginFormComponent {
               // Close Modal
               this.store.dispatch(HiddenLoginModal({hidden: true}));
               this.store.dispatch(ShowProfileModal({show: true}));
+              this.router.navigate(['/modal', {outlets: {'modal': ['main']}}])
           },
           err => {
               console.log(err);

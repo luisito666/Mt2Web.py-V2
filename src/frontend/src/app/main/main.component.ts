@@ -13,8 +13,6 @@ import { LoginService } from '../services/login.service';
 // Environments
 import { environment } from '../../environments/environment';
 
-
-
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

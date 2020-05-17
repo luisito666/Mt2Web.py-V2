@@ -28,6 +28,8 @@ export const AddUserError = createAction(
     props<{error: any}>()
 )
 
+// Players
+
 export const AddPlayer = createAction(
     '[USERS] Add Player to Store',
     props<{players: Player[]}>()

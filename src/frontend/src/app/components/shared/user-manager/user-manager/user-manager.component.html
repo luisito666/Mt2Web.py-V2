@@ -5,25 +5,34 @@
             <i class="far fa-times-circle"></i>
         </div>
         <section class="tabs_menu">
-            <button class="tabs pointer" [ngClass]="{'active': window_manager_main}" 
-                    (click)="show_menu('1')" 
+            <button class="tabs pointer"
+                    [routerLink]="['/modal', {outlets: {'modal': ['main']}}]"
+                    routerLinkActive="active"
                     id="default"
                     style="border-top-left-radius: 10px;">
                 Informacion
             </button>
-            <button class="tabs pointer" [ngClass]="{'active': window_manager_player}"
-                    (click)="show_menu('2')" 
+            <button class="tabs pointer"
+                    [routerLink]="['/modal', {outlets: {'modal': ['players']}}]"
+                    routerLinkActive="active" 
                     id="default"
                     style="border-top-left-radius: 10px;">
                 Personajes
             </button>
-            <button class="tabs pointer" [ngClass]="{'active': window_manager_passwd}"
-                    (click)="show_menu('3')">
+            <button class="tabs pointer"
+                    [routerLink]="['/modal', {outlets: {'modal': ['pass']}}]"
+                    routerLinkActive="active">
                 Cambio de Contraseña
             </button>
-            <button class="tabs pointer" [ngClass]="{'active': window_manager_donations}"
-                    (click)="show_menu('4')">
+            <button class="tabs pointer"
+                    [routerLink]="['/modal', {outlets: {'modal': ['donations']}}]"
+                    routerLinkActive="active">
                 Donar
+            </button>
+            <button class="tabs pointer"
+                    [routerLink]="['/modal', {outlets: {'modal': ['chat']}}]"
+                    routerLinkActive="active">
+                Chat
             </button>
             <button class="tabs pointer"
                     (click)="logout()">
@@ -31,10 +40,10 @@
             </button>
         </section>
         <section class="content_menu">
-            <div id="1" class="content" [hidden]="!window_manager_main">
-                <main-manager></main-manager>
+            <div class="content">
+                <router-outlet name="modal"></router-outlet>
             </div>
-            <div id="2" class="content" [hidden]="!window_manager_player">
+            <!-- <div id="2" class="content" [hidden]="!window_manager_player">
                 <manager-player-list></manager-player-list>
             </div>
             <div id="3" class="content" [hidden]="!window_manager_passwd">
@@ -43,6 +52,9 @@
             <div id="4" class="content" [hidden]="!window_manager_donations">
                 <manager-donations></manager-donations>
             </div>
+            <div id="5" class="content" [hidden]="!window_manager_chat">
+                <manager-chat></manager-chat>
+            </div> -->
         </section>
     </div>
 </section>
