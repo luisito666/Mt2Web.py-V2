@@ -26,7 +26,6 @@ export const connectUser = (client: Socket,  io: SocketIO.Server) => {
     usersOnline.addUser(user);
 }
 
-
 export const disconnectUser = ( client: Socket, io: SocketIO.Server ) => {
     client.on('disconnect', () => {
         usersOnline.deleteUser( client.id );
@@ -46,5 +45,3 @@ export const getUsers = (client: Socket,  io: SocketIO.Server) => {
         io.to( client.id ).emit('active-users', usersOnline.getUsers());
     });
 } 
-
-
