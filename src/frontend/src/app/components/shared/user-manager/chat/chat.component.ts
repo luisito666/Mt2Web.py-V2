@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Services
 import { WebsocketService } from 'src/app/services/websocket.service';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 // Store
 import { Store } from '@ngrx/store';
@@ -25,11 +25,11 @@ export class ChatComponet implements OnInit, OnDestroy {
   user: string;
   messages: Message[];
   messageForm: FormGroup;
-  wsObserver: Subscription;
+  wsObserver: Subscription = new Subscription();
 
   constructor(
     private store: Store<AppState>,
-    private auth: LoginService,
+    private auth: AuthService,
     private ws: WebsocketService,
   ) { 
     this.messageForm = new FormGroup({

@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.reducers';
 import { AddToken } from '../store/actions';
 // Services
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth/auth.service';
 
 // Environments
 import { environment } from '../../environments/environment';
@@ -25,7 +25,7 @@ export class MainComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private auth: LoginService,
+    private auth: AuthService,
     private title: Title
   ) {}
 

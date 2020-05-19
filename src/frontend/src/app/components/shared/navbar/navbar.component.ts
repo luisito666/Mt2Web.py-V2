@@ -2,7 +2,7 @@ import { Component  } from '@angular/core';
 import { Router } from '@angular/router';
 
 // Services
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 // Redux
 import { Store } from '@ngrx/store'
@@ -20,7 +20,7 @@ import { ShowLoginModal, ShowProfileModal } from '../../../store/actions';
 export class NavbarComponent {
 
   constructor(
-    public login: LoginService,
+    public login: AuthService,
     private store: Store<AppState>,
     private router: Router
   ) { }

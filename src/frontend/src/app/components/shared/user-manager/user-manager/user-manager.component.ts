@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
 // Services
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 // Redux
 import { Store } from '@ngrx/store';
@@ -24,7 +24,7 @@ export class UserManagerComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private login: LoginService,
+    private login: AuthService,
     private router: Router
 
   ) { }

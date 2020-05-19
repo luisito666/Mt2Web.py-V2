@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // JWT Module
 import { JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
@@ -37,7 +37,10 @@ import { environment } from 'src/environments/environment';
 import { token_getter } from './services/token-getter';
 
 // SocketIO
-import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io'
+import { SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
+
+// Error Interceptors
+import { ErrorInterceptor } from './services/error-interceptor';
 
 // JWT Config
 const JWTConfig: JwtModuleOptions = {
@@ -78,7 +81,11 @@ const SocketConfig: SocketIoConfig = {
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

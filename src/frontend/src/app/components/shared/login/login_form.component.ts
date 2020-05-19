@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicios
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 // Interfaces
 import { User } from 'src/app/interfaces/user.simple';
@@ -31,7 +31,7 @@ export class LoginFormComponent {
     loginForm: FormGroup;
 
     constructor(
-        private login: LoginService,
+        private login: AuthService,
         private store: Store<AppState>,
         private router: Router
     ) {

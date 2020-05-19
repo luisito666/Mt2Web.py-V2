@@ -8,6 +8,9 @@ import { WebsocketService } from './websocket.service';
 import { HttpService } from './http/http.service';
 import { AuthenticateService } from './http/authenticate.service';
 
+// Auth Services
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 @NgModule({
     declarations: [],
@@ -25,7 +28,9 @@ export class ServicesModule {
             providers: [
                 HttpService,
                 AuthenticateService,
-                WebsocketService
+                AuthService,
+                AuthGuardService,
+                WebsocketService,
             ]
         };
     }
