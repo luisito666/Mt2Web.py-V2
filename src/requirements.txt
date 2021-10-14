@@ -10,5 +10,5 @@ mysqlclient==1.4.6
 PyMySQL==0.9.3
 
 # Other Stuff
-PyYAML==5.1.2
+PyYAML==5.4
 PyJWT==1.7.1
